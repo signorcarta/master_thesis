@@ -25,7 +25,7 @@ for elem in ls:
         host_name = elem[0]
         port_number = elem[1]
 
-        conn = mysql.connector.connect(user='read-only', password='My3306ro!', host=host_name, port=port_number)
+        conn = mysql.connector.connect(user='read-only', password='', host=host_name, port=port_number)
         cursor = conn.cursor(dictionary=True)
 
         ## Retrieve log-bin saving variable ##
