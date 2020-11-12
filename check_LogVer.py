@@ -20,15 +20,14 @@ hosts = ["lximydb22v1","mydwcl01","mydwcl02","mydbcl01","myalcl01","mysuapcl01.s
 ls = zip(hosts, ports)
 
 for elem in ls:
-#       print("\nHost name: " + elem[0])
-#       print("Port number: " + str(elem[1]))
+
         host_name = elem[0]
         port_number = elem[1]
 
         conn = mysql.connector.connect(user='read-only', password='', host=host_name, port=port_number)
-        cursor = conn.cursor(dictionary=True)
-
+        
         ## Retrieve log-bin saving variable ##
+        cursor = conn.cursor(dictionary=True)
         log_bin = ("SELECT @@log_bin;")
         cursor.execute(log_bin)
         row = cursor.fetchone()
