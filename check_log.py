@@ -21,18 +21,34 @@ for elem in ls:
 
         conn = mysql.connector.connect(user='read-only', password='', host=host_name, port=port_number)
         cursor = conn.cursor(dictionary=True)
+        
+        ## Retrieve log-bin saving variable ##
         query = ("SELECT @@log_bin;")
         cursor.execute(query)
         row = cursor.fetchone()
+        cursor.close()
+        
+        ## Retrieve MySQL DB Version in use ##
+        cursor = conn.cursor(dictionary=True)
+        version = ("SELECT VERSION();")
+        cursor.execute(version);
+        ver = cursor.fetchone()
+        cursor.close()
 
         val = row.values()
         val = list(val)
         val = val[0]
+        
+        ver = ver.values()
+        ver = list(ver)
+        ver = ver[0]
 
         if val>0:
                 print("\n >>Log-bin ENABLED on instance " + host_name + "\n")
+                print("   MySQL version: " + str(ver))
         else:
                 print("\n >>Log-bin NOT ENABLED on instance " + host_name + "\n")
+                print("   MySQL version: " + str(ver))
 
         conn.close()
         cursor.close()
