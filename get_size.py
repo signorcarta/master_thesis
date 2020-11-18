@@ -42,7 +42,8 @@ sum=0
 #Get the total sum
 for elem in list:
 	sum+=elem
-print("\n>> Size of this instance: " + sum/1024 + " <<\n")
+## Print size of the instance in [GB]
+print("\n>> Size of instance " + host_name + ": " + str(sum/1024) + " GB <<\n")
 
 conn.close()
 #______________________________________________________________________________________________________________________
