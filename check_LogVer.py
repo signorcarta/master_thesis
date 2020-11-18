@@ -2,20 +2,23 @@
 #
 #
 
-##########################################################################
-## This script performs the following checks on all the MySQL instances:
-##      - Binary-log saving enabled/disabled
-##      - Running MySQL version
-##########################################################################
+###########################################################################
+## This script performs the following checks on all the MySQL instances: ##
+##      - Binary-log saving enabled/disabled                             ##
+##      - Running MySQL version                                          ##
+###########################################################################
 
-## Missing instances giving "Bad Handshake" error ##
+###########################################################################
+## NOTES ##################################################################
+###########################################################################
+## Missing instances giving "Bad Handshake" error ##                      #
+
+
 import mysql.connector
 
-ports = [3307,3309,3308,3306,3306,3306,3306,3306,3306,3306,3306,3306,3306,
-3306,3306,3306,3306,3306,3306,3306,3307,3306,3306,3306,3306,3306,3306,3306]
-
-hosts = ["lximydb22v1","mydwcl01","mydwcl02","mydbcl01","myalcl01","mysuapcl01.sim.infocamere.it",
-"myigovcl01.sim.infocamere.it","myigovpr01.sim.infocamere.it","mylifepr01.sim.infocamere.it","myipecpr01.sim.infocamere.it","mysuappr01.sim.infocamere.it","mysuappr02.sim.infocamere.it","lximydb002v1","mydbpr01","mydbicep01","mydwpr01","mydwpr03","mydwpr05","mysqlicpr01","mydbcontpr02","lximydb003v1","mydbpr02","myalpr01","mydwpr02","mydwpr04","mydbcontpr01","vlxidb01","lximydb001"]
+ports = []
+hosts = [""]
+psw == ''
 
 ls = zip(hosts, ports)
 
@@ -24,8 +27,8 @@ for elem in ls:
         host_name = elem[0]
         port_number = elem[1]
 
-        conn = mysql.connector.connect(user='read-only', password='', host=host_name, port=port_number)
-        
+        conn = mysql.connector.connect(user='read-only', password=psw, host=host_name, port=port_number)
+
         ## Retrieve log-bin saving variable ##
         cursor = conn.cursor(dictionary=True)
         log_bin = ("SELECT @@log_bin;")
@@ -48,10 +51,13 @@ for elem in ls:
         ver = list(ver)
         ver = ver[0]
 
+        ## Print status of log-bin variable ##
         if val>0:
                 print("\n >>Log-bin ENABLED on instance " + host_name + "\n")
         else:
                 print("\n >>Log-bin NOT ENABLED on instance " + host_name + "\n")
+
+        ## Print version of MySQL ##
         print("   MySQL version: " + str(ver))
 
         conn.close()
