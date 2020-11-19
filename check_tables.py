@@ -5,8 +5,9 @@
 #
 import mysql.connector
 
-host_name ='lximydb22v1'
-port_number = 3307
+host_name = []
+port_number = []
+
 psw = 'My3306ro!'
 
 ## Connect to the MySQL instance and query the data ##
@@ -44,17 +45,20 @@ for elem in info_list:
 
 nonInnoS = zip(other_tables, nonInnoDBengine)
 
+name_file = host_name + ".txt"
+output = open(name_file, "w")
+
 ## Print non-InnoDB tables ##
 for elem in nonInnoS:
-        print("\n   Table [" + str(elem[0]) + "] type is: " + elem[1])
+        print("\n   Table [" + str(elem[0]) + "] type is: " + elem[1], file = output)
 
 ## Print InnoDB tables ##
 #for elem in inno_tables:
 #        print("\n   Table [" + str(elem) + "] type is InnoDB")
 
-print("\n###### SUMMARY ######")
-print("_____________________")
-print("| Total:      | " + str(len(table_name)) + " |")
-print("| InnoDB:     | " + str(len(inno_tables)) + " |")
-print("| Non-InnoDB: | " + str(len(other_tables)) + " |")
-print("_____________________")
+print("\n###### SUMMARY ######", file = output)
+print("_____________________", file = output)
+print("| Total:      | " + str(len(table_name)) + " |", file = output)
+print("| InnoDB:     | " + str(len(inno_tables)) + " |",file = output)
+print("| Non-InnoDB: | " + str(len(other_tables)) + " |",file = output)
+print("_____________________", file = output)
