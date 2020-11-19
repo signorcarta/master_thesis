@@ -1,5 +1,15 @@
-ports = []
-hosts = [""]
+ports = [3307,3309,3308,3306,3306,3306,3306,3306,3306,3306,3306,3306,
+3306, 3306,3306,3306,3306,3306,3306,3306,3307,3306, 3306,3306,3306,
+3306,3306,3306, 3306,3308,3306,3306,3307,3308,3306]
+
+hosts = ["lximydb22v1","mydwcl01","mydwcl02","mydbcl01","myalcl01","mysuapcl01.sim.infocamere.it",
+"myigovcl01.sim.infocamere.it","myigovpr01.sim.infocamere.it","mylifepr01.sim.infocamere.it",
+"myipecpr01.sim.infocamere.it", "mysuappr01.sim.infocamere.it","mysuappr02.sim.infocamere.it",
+"lximydb002v1","mydbpr01","mydbicep01","mydwpr01","mydwpr03", "mydwpr05","mysqlicpr01","mydbcontpr02",
+"lximydb003v1","mydbpr02","myalpr01","mydwpr02","mydwpr04","mydbcontpr01","vlxidb01", "lximydb001", 
+"vlximidb08.mi.cciaa.net","vlximidb08.mi.cciaa.net","vlpimidb001.mi.cciaa.net", "vlpimidb002.mi.cciaa.net",
+"vlpimidb002.mi.cciaa.net","vlpimidb002.mi.cciaa.net","mydbcompr001.mi.cciaa.net"]
+
 psw == ''
 
 ls = zip(hosts, ports)
