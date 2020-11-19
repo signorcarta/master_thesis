@@ -18,18 +18,17 @@ while row is not None:
        table_name.append(row.get('TABLE_NAME'))
        table_engine.append(row.get('ENGINE'))
        row = cursor.fetchone()
-
 info_list = zip(table_name, table_engine)
 
-## Save lists of InnoDB and !=InnoDB tables
-print("\n.\n.\n.\nExamined instance: " + host_name + "\nThe following are non-InnoDB tables: ")
+print("\n.\n.\n.\nExamined instance: " + host_name)
+## Separate InnoDB and non-InnoDB tables
 inno_tables = []
 other_tables = []
 for elem in info_list:
         engine= elem[1]
         table = elem[0]
         if(engine != 'InnoDB' and engine != None):
-#               print("\nTable [" + str(table) + "] type is: " + str(engine))
+#               print("The following are non-InnoDB tables:\n   Table [" + str(table) + "] type is: " + str(engine))
                 other_tables.append(table)
         else:
                 inno_tables.append(table)
@@ -38,6 +37,7 @@ for elem in info_list:
 #for elem in inno_tables:
 #        print("\n   Table [" + str(elem) + "] type is InnoDB")
 
+#print(\n### Summary ###)
 #print("Total: " + str(len(table_name)))
 #print("InnoDB: " + str(len(inno_tables)))
 #print("Non-InnoDB: " + str(len(other_tables)))
