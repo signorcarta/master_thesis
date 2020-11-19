@@ -1,16 +1,10 @@
-#
-#
-#
-#
-#_________________________________________
 import mysql.connector
 
-host_name =''
-port_number = 
-psw = ''
+host_name ='lximydb22v1'
+port_number = 3307
 
 ## Connect to the MySQL instance and query the data ##
-conn = mysql.connector.connect(user='read-only', password=psw, host=host_name, port=port_number)
+conn = mysql.connector.connect(user='read-only', password='My3306ro!', host=host_name, port=port_number)
 cursor = conn.cursor(dictionary=True)
 query = ("SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES;")
 cursor.execute(query) # Execute query
@@ -26,23 +20,23 @@ while row is not None:
 
 info_list = zip(table_name, table_engine)
 
-## Save lists of InnoDB and !=InnoDB tables ##
-print("\n.\n.\n.\n>> Examined instance: " + host_name + "\n   The following are non-InnoDB tables: ")
+## Save lists of InnoDB and !=InnoDB tables
+print("\n.\n.\n.\nExamined instance: " + host_name + "\nThe following are non-InnoDB tables: ")
 inno_tables = []
 other_tables = []
-## Print non-InnnoDB tables ##
 for elem in info_list:
         engine= elem[1]
         table = elem[0]
         if(engine != 'InnoDB' and engine != None):
-                print("\n   Table [" + str(table) + "] type is: " + str(engine))
+#               print("\nTable [" + str(table) + "] type is: " + str(engine))
                 other_tables.append(table)
         else:
                 inno_tables.append(table)
 
 ## Print InnoDB tables ##
-#for elem in info_list:
-#        engine= elem[1]
-#        table = elem[0]
-#        if(engine == 'InnoDB'):
-#                print("\n   Table [" + str(table) + "] type is InnoDB")                     
+#for elem in inno_tables:
+#        print("\n   Table [" + str(elem) + "] type is InnoDB")
+
+#print("Total: " + str(len(table_name)))
+#print("InnoDB: " + str(len(inno_tables)))
+#print("Non-InnoDB: " + str(len(other_tables)))
