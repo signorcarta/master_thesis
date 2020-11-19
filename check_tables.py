@@ -28,9 +28,9 @@ info_list = zip(table_name, table_engine)
 
 ## Save lists of InnoDB and !=InnoDB tables ##
 print("\n.\n.\n.\n>> Examined instance: " + host_name + "\n   The following are non-InnoDB tables: ")
-
 inno_tables = []
 other_tables = []
+## Print non-InnnoDB tables ##
 for elem in info_list:
         engine= elem[1]
         table = elem[0]
@@ -39,3 +39,10 @@ for elem in info_list:
                 other_tables.append(table)
         else:
                 inno_tables.append(table)
+
+## Print InnoDB tables ##
+#for elem in info_list:
+#        engine= elem[1]
+#        table = elem[0]
+#        if(engine == 'InnoDB'):
+#                print("\n   Table [" + str(table) + "] type is InnoDB")                     
