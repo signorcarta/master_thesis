@@ -1,10 +1,11 @@
 import mysql.connector
 
-host_name ='lximydb22v1'
-port_number = 3307
+host_name =''
+port_number = 
+psw = ''
 
 ## Connect to the MySQL instance and query the data ##
-conn = mysql.connector.connect(user='read-only', password='My3306ro!', host=host_name, port=port_number)
+conn = mysql.connector.connect(user='read-only', password=psw, host=host_name, port=port_number)
 cursor = conn.cursor(dictionary=True)
 query = ("SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES;")
 cursor.execute(query) # Execute query
